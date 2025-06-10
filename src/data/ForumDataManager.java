@@ -59,6 +59,11 @@ public class ForumDataManager {
         }
     }
 
+    /**
+    * 将用户信息列表保存到文件中
+    * 此方法使用对象输出流将内存中的用户信息列表序列化并保存到磁盘上
+    * 这样做是为了在程序终止运行后能够持久化用户信息
+    */
     private void saveUsers() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USERS_FILE))) {
             oos.writeObject(users);
