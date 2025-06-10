@@ -1,0 +1,56 @@
+# IDEA 项目文件
+.idea/
+*.iml
+
+# 编译输出目录
+/out/
+target/
+build/
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.swp
+*.bak
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Maven
+.mvn/
+!**/src/main/**/mvnw
+!**/src/main/**/mvnw.cmd
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# 包管理
+node_modules/
+
+# 依赖库
+lib/
+*.jar
+*.war
+*.ear
+
+# 覆盖率、测试报告
+*.ec
+*.exec
+*.coverage
+*.coverage.*
+/test-output/
+/jacoco.exec
+
+# 本地环境配置
+*.local
+*.env
+
+# VS Code 配置
+.vscode/
+
+# 其他
+*.class
