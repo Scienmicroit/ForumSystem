@@ -54,3 +54,13 @@ lib/
 
 # 其他
 *.class
+data/ForumDataManager.java
+data/Post.java
+data/Reply.java
+data/User.java
+main/ForumSystem.java
+ui/ViewPostPanel.java
+ui/RegisterPanel.java
+ui/NewPostPanel.java
+ui/ActivityRankingPanel.java
+ui/MyRepliesPanel.java
