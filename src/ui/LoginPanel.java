@@ -1,10 +1,10 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 
-import src.main.ForumSystem;
-import src.data.ForumDataManager;
+import main.ForumSystem;
+import data.ForumDataManager;
 // import src.data.Post;
 
 public class LoginPanel extends JPanel {

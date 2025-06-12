@@ -1,9 +1,9 @@
-package src.main;
-// 导包
+package main;
+
 import javax.swing.*;
 import java.awt.*;
-import src.data.*;
-import src.ui.*;
+import data.*;
+import ui.*;
 
 public class ForumSystem extends JFrame {
     private ForumDataManager dataManager;
@@ -111,7 +111,7 @@ public class ForumSystem extends JFrame {
         adminPanel.refreshPosts();
         cardLayout.show(mainPanel, "admin");
     }
-    // 主函数
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new ForumSystem().setVisible(true));
     }

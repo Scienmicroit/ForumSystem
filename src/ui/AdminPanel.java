@@ -1,12 +1,13 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.util.List;
 
-
-import src.main.ForumSystem;
-import src.data.ForumDataManager;
-import src.data.Post;
+import main.ForumSystem;
+import data.ForumDataManager;
+import data.Post;
 
 public class AdminPanel extends JPanel {
 
@@ -24,9 +25,39 @@ public class AdminPanel extends JPanel {
         listModel = new DefaultListModel<>();
         postList = new JList<>(listModel);
         postList.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index,
+                    boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof Post) {
+                    Post post = (Post) value;
+                    StringBuilder sb = new StringBuilder();
+                    if (post.isSticky()) {
+                        sb.append("[置顶] ");
+                    }
+                    sb.append(post.getTitle())
+                            .append(" - ")
+                            .append(post.getAuthor())
+                            .append(" (")
+                            .append(post.getDateString())
+                            .append(") ❤️")
+                            .append(post.getLikes());
+                    setText(sb.toString());
+                }
+                return this;
+            }
         });
         postList.addMouseListener(new MouseAdapter() {
-           
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    Post selectedPost = postList.getSelectedValue();
+                    if (selectedPost != null) {
+                        mainFrame.getViewPostPanel().setPost(selectedPost);
+                        mainFrame.showViewPostPanel();
+                    }
+                }
+            }
         });
 
         JScrollPane scrollPane = new JScrollPane(postList);

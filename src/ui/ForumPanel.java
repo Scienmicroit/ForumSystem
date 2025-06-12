@@ -1,12 +1,14 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.awt.*;
+import java.util.List;
 
-import src.main.ForumSystem;
-import src.data.ForumDataManager;
-import src.data.Post;
+import main.ForumSystem;
+import data.ForumDataManager;
+import data.Post;
 
 public class ForumPanel extends JPanel {
     private ForumSystem mainFrame;
@@ -25,12 +27,30 @@ public class ForumPanel extends JPanel {
         listModel = new DefaultListModel<>();
         postList = new JList<>(listModel);
         postList.setCellRenderer(new DefaultListCellRenderer() {
-           
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index,
+                    boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof Post) {
+                    Post post = (Post) value;
+                    setText(post.getTitle() + " - " + post.getAuthor() + " (" + post.getDateString() + ")");
+                }
+                return this;
+            }
         });
 
         // 支持双击进入帖子详情
         postList.addMouseListener(new MouseAdapter() {
-           
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    Post selectedPost = postList.getSelectedValue();
+                    if (selectedPost != null) {
+                        mainFrame.getViewPostPanel().setPost(selectedPost);
+                        mainFrame.showViewPostPanel();
+                    }
+                }
+            }
         });
 
         JScrollPane scrollPane = new JScrollPane(postList);
