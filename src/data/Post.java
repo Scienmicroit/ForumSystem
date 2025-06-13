@@ -19,6 +19,10 @@ public class Post implements Serializable {
     private final String author;
     private final LocalDate date;
     private final List<Reply> replies;
+    private boolean isSticky;
+    private int likes;
+
+
     /**
      * 构造函数，初始化帖子基本信息
      *
@@ -33,6 +37,8 @@ public class Post implements Serializable {
         this.author = author;
         this.date = LocalDate.now();
         this.replies = new ArrayList<>();
+        this.isSticky = false;
+        this.likes = 0;
     }
     // --------------------- Getters ---------------------
 
@@ -59,6 +65,18 @@ public class Post implements Serializable {
     public List<Reply> getReplies() {
         return replies;
     }
+
+    public boolean isSticky() {
+        return isSticky;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+    public void addLike() {
+        likes++;
+    }
+
 
     // --------------------- Setters ---------------------
 
