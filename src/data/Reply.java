@@ -5,9 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * @author Orion
- */
+
 public class Reply implements Serializable {
     @Serial
     private static final long serialVersionUID =1L;

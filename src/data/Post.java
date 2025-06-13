@@ -7,9 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Orion
- */
+
 public class Post implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
