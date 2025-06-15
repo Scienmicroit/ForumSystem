@@ -62,6 +62,71 @@ public class ViewPostPanel extends JPanel {
                 return this;
             }
         });
+        JScrollPane replyScrollPane = new JScrollPane(replyList);
 
+        // 回帖输入区域
+        JPanel replyInputPanel = new JPanel();
+        replyInputPanel.setLayout(new BorderLayout());
+
+        replyArea = new JTextArea(5, 40);
+        replyArea.setLineWrap(true);
+        JScrollPane replyAreaScrollPane = new JScrollPane(replyArea);
+
+        JPanel buttonPanel = new JPanel();
+        JButton replyButton = new JButton("回复");
+        replyButton.addActionListener(e -> submitReply());
+
+        JButton likeButton = new JButton("点赞");
+        likeButton.addActionListener(e -> likePost());
+
+        JButton backButton = new JButton("返回");
+        backButton.addActionListener(e -> mainFrame.showForumPanel());
+
+        buttonPanel.add(replyButton);
+        buttonPanel.add(likeButton);
+        buttonPanel.add(backButton);
+
+        replyInputPanel.add(replyAreaScrollPane, BorderLayout.CENTER);
+        replyInputPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        // 分割面板
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, postPanel, replyScrollPane);
+        splitPane.setDividerLocation(200);
+
+        add(splitPane, BorderLayout.CENTER);
+        add(replyInputPanel, BorderLayout.SOUTH);
+
+    }
+
+    public void setPost(Post post) {
+        this.currentPost = post;
+        titleLabel.setText(post.getTitle());
+        authorLabel.setText(
+                "作者: " + post.getAuthor() + "   发布日期: " + post.getDateString() + "   点赞: " + post.getLikes());
+        contentArea.setText(post.getContent());
+
+        replyListModel.clear();
+        for (Reply reply : post.getReplies()) {
+            replyListModel.addElement(reply);
+        }
+
+        replyArea.setText("");
+    }
+
+    private void submitReply() {
+
+    }
+
+    private void likePost() {
+        if (currentPost == null) {
+            return;
+        }
+
+        currentPost.addLike();
+        // dataManager.updatePost(currentPost);
+
+        JOptionPane.showMessageDialog(this, "点赞成功！");
+        setPost(currentPost);
+        mainFrame.refreshForumPanel();
     }
 }

@@ -1,6 +1,10 @@
 package ui;
 
 import javax.swing.*;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+
 import java.awt.*;
 import java.util.Map;
 import java.util.HashMap;
@@ -36,5 +40,28 @@ public class MyRepliesPanel extends JPanel {
             }
         });
 
+        replyList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    Reply selectedReply = replyList.getSelectedValue();
+                    if (selectedReply != null && replyPostMap.containsKey(selectedReply)) {
+                        Post post = replyPostMap.get(selectedReply);
+                        mainFrame.getViewPostPanel().setPost(post);
+                        mainFrame.showViewPostPanel();
+                    }
+                }
+            }
+        });
+        JScrollPane scrollPane = new JScrollPane(replyList);
+        add(scrollPane, BorderLayout.CENTER);
+
+        // 按钮面板
+        JPanel buttonPanel = new JPanel();
+        JButton backButton = new JButton("返回");
+        backButton.addActionListener(e -> mainFrame.showForumPanel());
+        buttonPanel.add(backButton);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
+
 }
