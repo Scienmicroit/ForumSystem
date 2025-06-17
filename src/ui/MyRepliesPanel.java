@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package src.ui;
 
 import javax.swing.*;
@@ -8,22 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-=======
-package ui;
 
-import javax.swing.*;
-
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseAdapter;
-
-import java.awt.*;
-import java.util.Map;
-import java.util.HashMap;
-
-import main.ForumSystem;
-import data.*;
-
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
 public class MyRepliesPanel extends JPanel {
     private ForumSystem mainFrame;
     private ForumDataManager dataManager;
@@ -51,12 +35,6 @@ public class MyRepliesPanel extends JPanel {
                 return this;
             }
         });
-<<<<<<< HEAD
-        replyList.addMouseListener(new MouseAdapter() {
-        });
-
-=======
-
         replyList.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -70,7 +48,7 @@ public class MyRepliesPanel extends JPanel {
                 }
             }
         });
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
+
         JScrollPane scrollPane = new JScrollPane(replyList);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -82,8 +60,6 @@ public class MyRepliesPanel extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-<<<<<<< HEAD
     public void refreshReplies() {
-=======
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
+    }
 }

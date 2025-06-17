@@ -1,21 +1,11 @@
-<<<<<<< HEAD
 package src.ui;
-=======
-package ui;
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
 
 import javax.swing.*;
 import java.awt.*;
 
-<<<<<<< HEAD
 import src.main.ForumSystem;
 import src.data.ForumDataManager;
 import src.data.User;
-=======
-import main.ForumSystem;
-import data.ForumDataManager;
-import data.User;
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
 
 public class RegisterPanel extends JPanel {
     private ForumSystem mainFrame;
@@ -67,34 +57,6 @@ public class RegisterPanel extends JPanel {
     }
 
     private void register() {
-        String username = usernameField.getText();
-        String password = new String(passwordField.getPassword());
-        String confirmPassword = new String(confirmPasswordField.getPassword());
-
-<<<<<<< HEAD
-=======
-        if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "用户名和密码不能为空！", "注册失败", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(this, "两次输入的密码不一致！", "注册失败", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (dataManager.getUser(username) != null) {
-            JOptionPane.showMessageDialog(this, "用户名已存在！", "注册失败", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
-
-        dataManager.addUser(new User(username, password, false));
-        JOptionPane.showMessageDialog(this, "注册成功！请登录");
-        mainFrame.showLoginPanel();
+        
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8

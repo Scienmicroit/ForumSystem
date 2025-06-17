@@ -32,6 +32,5 @@ public class ActivityRankingPanel extends JPanel {
     }
 
     public void refreshRanking() {
-       
     }
 }

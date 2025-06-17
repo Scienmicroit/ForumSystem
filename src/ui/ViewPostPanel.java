@@ -1,24 +1,13 @@
-<<<<<<< HEAD
 package src.ui;
-=======
-package ui;
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
 
 import javax.swing.*;
 import java.awt.*;
 // import java.awt.event.*;
 
-<<<<<<< HEAD
 import src.data.Post;
 import src.data.Reply;
 import src.data.ForumDataManager;
 import src.main.ForumSystem;
-=======
-import data.Post;
-import data.Reply;
-import data.ForumDataManager;
-import main.ForumSystem;
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
 
 public class ViewPostPanel extends JPanel {
     private ForumSystem mainFrame;
@@ -106,17 +95,6 @@ public class ViewPostPanel extends JPanel {
 
         add(splitPane, BorderLayout.CENTER);
         add(replyInputPanel, BorderLayout.SOUTH);
-<<<<<<< HEAD
-    }
-
-    public void setPost(Post post) {
-        
-    }
-
-    private void submitReply() {
-        
-=======
-
     }
 
     public void setPost(Post post) {
@@ -135,29 +113,8 @@ public class ViewPostPanel extends JPanel {
     }
 
     private void submitReply() {
-
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
     }
 
     private void likePost() {
-        if (currentPost == null) {
-            return;
-        }
-
-        currentPost.addLike();
-<<<<<<< HEAD
-        dataManager.updatePost(currentPost);
-
-        // 刷新帖子信息
-        JOptionPane.showMessageDialog(this, "点赞成功！");
-        setPost(currentPost);
-        mainFrame.refreshForumPanel(); // 刷新帖子列表
-=======
-        // dataManager.updatePost(currentPost);
-
-        JOptionPane.showMessageDialog(this, "点赞成功！");
-        setPost(currentPost);
-        mainFrame.refreshForumPanel();
->>>>>>> 23a0aa3e0aa564ffef5763d0ec66f7ae53745ed8
     }
 }
