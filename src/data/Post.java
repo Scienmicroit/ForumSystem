@@ -69,6 +69,10 @@ public class Post implements Serializable {
     public boolean isSticky() {
         return isSticky;
     }
+    
+    public void setSticky(boolean sticky) {
+        isSticky = sticky;
+    }
 
     public int getLikes() {
         return likes;
