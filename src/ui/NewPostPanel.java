@@ -1,11 +1,11 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 
-import src.main.ForumSystem;
-import src.data.ForumDataManager;
-import src.data.Post;
+import main.ForumSystem;
+import data.ForumDataManager;
+import data.Post;
 
 public class NewPostPanel extends JPanel {
     private ForumSystem mainFrame;
@@ -72,5 +72,21 @@ public class NewPostPanel extends JPanel {
     }
 
     private void submitPost() {
+        String title = titleField.getText();
+        String content = contentArea.getText();
+
+        if (title.isEmpty() || content.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "标题和内容不能为空！", "发布失败", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Post newPost = new Post(title, content, mainFrame.getCurrentUser().getUsername());
+        dataManager.addPost(newPost);
+
+        JOptionPane.showMessageDialog(this, "帖子发布成功！");
+        titleField.setText("");
+        contentArea.setText("");
+        mainFrame.refreshForumPanel();
+        mainFrame.showForumPanel();
     }
 }

@@ -1,12 +1,12 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Map;
-import src.data.ForumDataManager;
-import src.data.User;
-import src.main.ForumSystem;
+import data.ForumDataManager;
+import data.User;
+import main.ForumSystem;
 
 public class ActivityRankingPanel extends JPanel {
     private ForumDataManager dataManager;

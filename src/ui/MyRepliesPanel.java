@@ -1,12 +1,14 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
+
+import data.*;
+import main.ForumSystem;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-
 
 public class MyRepliesPanel extends JPanel {
     private ForumSystem mainFrame;

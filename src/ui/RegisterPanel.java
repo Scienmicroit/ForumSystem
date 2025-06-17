@@ -1,11 +1,11 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 
-import src.main.ForumSystem;
-import src.data.ForumDataManager;
-import src.data.User;
+import main.ForumSystem;
+import data.ForumDataManager;
+import data.User;
 
 public class RegisterPanel extends JPanel {
     private ForumSystem mainFrame;
@@ -57,6 +57,28 @@ public class RegisterPanel extends JPanel {
     }
 
     private void register() {
-        
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+        String confirmPassword = new String(confirmPasswordField.getPassword());
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "用户名和密码不能为空！", "注册失败", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "两次输入的密码不一致！", "注册失败", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (dataManager.getUser(username) != null) {
+            JOptionPane.showMessageDialog(this, "用户名已存在！", "注册失败", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        dataManager.addUser(new User(username, password, false));
+        JOptionPane.showMessageDialog(this, "注册成功！请登录");
+        mainFrame.showLoginPanel();
     }
+
 }
