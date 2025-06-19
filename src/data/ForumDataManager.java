@@ -108,7 +108,37 @@ public class ForumDataManager {
                 .sorted(Comparator.comparing(Post::getDate).reversed())
                 .collect(Collectors.toList());
     }
+        // 回帖管理
+    public void addReply(int postId, Reply reply) {
+        for (Post post : posts) {
+            if (post.getId() == postId) {
+                post.addReply(reply);
+                User user = getUser(reply.getAuthor());
+                if (user != null) {
+                    user.incrementReplyCount();
+                }
+                savePosts();
+                saveUsers();
+                break;
+            }
+        }
+    }
 
+    // 活跃度统计
+    public Map<String, Integer> getActivityRanking() {
+        Map<String, Integer> ranking = new HashMap<>();
+        for (User user : users) {
+            int activity = user.getPostCount() + user.getReplyCount();
+            ranking.put(user.getUsername(), activity);
+        }
+        return ranking.entrySet().stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new));
+    }
 
     // 数据持久化
     @SuppressWarnings("unchecked")
