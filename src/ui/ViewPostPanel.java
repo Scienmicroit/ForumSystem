@@ -1,13 +1,13 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 // import java.awt.event.*;
 
-import src.data.Post;
-import src.data.Reply;
-import src.data.ForumDataManager;
-import src.main.ForumSystem;
+import data.Post;
+import data.Reply;
+import data.ForumDataManager;
+import main.ForumSystem;
 
 public class ViewPostPanel extends JPanel {
     private ForumSystem mainFrame;

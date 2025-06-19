@@ -1,4 +1,4 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import src.main.ForumSystem;
-import src.data.ForumDataManager;
-import src.data.Post;
-import src.data.Reply;
+import main.ForumSystem;
+import data.ForumDataManager;
+import data.Post;
+import data.Reply;
 
 public class MyRepliesPanel extends JPanel {
     private ForumSystem mainFrame;

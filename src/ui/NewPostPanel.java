@@ -1,11 +1,11 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 
-import src.main.ForumSystem;
-import src.data.ForumDataManager;
-import src.data.Post;
+import main.ForumSystem;
+import data.ForumDataManager;
+import data.Post;
 
 public class NewPostPanel extends JPanel {
     private ForumSystem mainFrame;
