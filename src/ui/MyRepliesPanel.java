@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
+import src.main.ForumSystem;
+import src.data.ForumDataManager;
+import src.data.Post;
+import src.data.Reply;
 
 public class MyRepliesPanel extends JPanel {
     private ForumSystem mainFrame;
@@ -61,5 +65,17 @@ public class MyRepliesPanel extends JPanel {
     }
 
     public void refreshReplies() {
+        listModel.clear();
+        replyPostMap.clear();
+
+        List<Post> allPosts = dataManager.getAllPosts();
+        for (Post post : allPosts) {
+            for (Reply reply : post.getReplies()) {
+                if (reply.getAuthor().equals(mainFrame.getCurrentUser().getUsername())) {
+                    listModel.addElement(reply);
+                    replyPostMap.put(reply, post);
+                }
+            }
+        }
     }
 }

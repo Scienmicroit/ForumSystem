@@ -113,8 +113,35 @@ public class ViewPostPanel extends JPanel {
     }
 
     private void submitReply() {
+        if (currentPost == null) {
+            return;
+        }
+
+        String replyContent = replyArea.getText();
+        if (replyContent.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "回复内容不能为空！", "回复失败", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Reply reply = new Reply(replyContent, mainFrame.getCurrentUser().getUsername());
+        dataManager.addReply(currentPost.getId(), reply);
+
+        // 刷新回复列表
+        JOptionPane.showMessageDialog(this, "回复成功！");
+        setPost(currentPost);
     }
 
     private void likePost() {
+        if (currentPost == null) {
+            return;
+        }
+
+        currentPost.addLike();
+        dataManager.updatePost(currentPost);
+
+        // 刷新帖子信息
+        JOptionPane.showMessageDialog(this, "点赞成功！");
+        setPost(currentPost);
+        mainFrame.refreshForumPanel(); // 刷新帖子列表
     }
 }

@@ -32,5 +32,22 @@ public class ActivityRankingPanel extends JPanel {
     }
 
     public void refreshRanking() {
+        tableModel.setRowCount(0);
+
+        Map<String, Integer> ranking = dataManager.getActivityRanking();
+        int rank = 1;
+
+        for (Map.Entry<String, Integer> entry : ranking.entrySet()) {
+            User user = dataManager.getUser(entry.getKey());
+            if (user != null) {
+                tableModel.addRow(new Object[] {
+                        rank++,
+                        entry.getKey(),
+                        user.getPostCount(),
+                        user.getReplyCount(),
+                        entry.getValue()
+                });
+            }
+        }
     }
 }
