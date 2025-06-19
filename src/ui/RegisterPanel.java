@@ -1,11 +1,11 @@
-package src.ui;
+package ui;
 
 import javax.swing.*;
 import java.awt.*;
 
-import src.main.ForumSystem;
-import src.data.ForumDataManager;
-import src.data.User;
+import main.ForumSystem;
+import data.ForumDataManager;
+import data.User;
 
 public class RegisterPanel extends JPanel {
     private ForumSystem mainFrame;
@@ -80,4 +80,5 @@ public class RegisterPanel extends JPanel {
         JOptionPane.showMessageDialog(this, "注册成功！请登录");
         mainFrame.showLoginPanel();
     }
+
 }
