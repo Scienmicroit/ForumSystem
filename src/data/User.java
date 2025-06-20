@@ -44,7 +44,7 @@ public class User implements Serializable {
     public boolean isAdmin() {
         return isAdmin;
     }
-    
+
     public int getPostCount() {
         return postCount;
     }
@@ -62,6 +62,11 @@ public class User implements Serializable {
     public void incrementReplyCount() {
         replyCount++;
     }
-
+    // 减少用户帖子的计数
+    public void decrementPostCount() {
+        if (postCount > 0) {
+            postCount--;
+        }
+    }
 
 }

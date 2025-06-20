@@ -31,23 +31,23 @@ public class ForumDataManager {
 
     // 用户管理
     /**
-     * 根据用户名获取用户对象
-     *
-     * username 用户名
-     * 用户对象，如果未找到则返回null
-     *    此方法通过用户名来过滤用户列表，返回匹配用户名的第一个用户对象，如果没有匹配的则返回null
-     */
+    * 根据用户名获取用户对象
+    *
+    * username 用户名
+    * 用户对象，如果未找到则返回null
+    *    此方法通过用户名来过滤用户列表，返回匹配用户名的第一个用户对象，如果没有匹配的则返回null
+    */
     public void addUser(User user) {
         users.add(user);
         saveUsers();
     }
     /**
-     * 根据用户名获取用户对象
-     *
-     * @param username 用户名
-     * @return 用户对象，如果未找到则返回null
-     *         此方法通过用户名来过滤用户列表，返回匹配用户名的第一个用户对象，如果没有匹配的则返回null
-     */
+    * 根据用户名获取用户对象
+    *
+    * @param username 用户名
+    * @return 用户对象，如果未找到则返回null
+    *         此方法通过用户名来过滤用户列表，返回匹配用户名的第一个用户对象，如果没有匹配的则返回null
+    */
     public User getUser(String username) {
         return users.stream()
                 .filter(u -> u.getUsername().equals(username))
@@ -67,7 +67,7 @@ public class ForumDataManager {
         User user = getUser(username);
         return user != null && user.getPassword().equals(password);
     }
-     // 帖子管理
+    // 帖子管理
     /**
      * 添加一个新的帖子到系统中
      * 此方法首先将帖子添加到帖子列表中，然后尝试更新作者的帖子计数，
@@ -107,9 +107,27 @@ public class ForumDataManager {
      *
      * @param postId 要删除的帖子的唯一标识符
      */
+/**
+     * 根据ID删除帖子
+     */
     public void deletePost(int postId) {
-        posts.removeIf(p -> p.getId() == postId);
-        savePosts();
+        // 查找对应ID的帖子
+        Post postToDelete = posts.stream()
+                .filter(p -> p.getId() == postId)
+                .findFirst()
+                .orElse(null);
+
+        if (postToDelete != null) {
+            // 更新用户发帖统计
+            User user = getUser(postToDelete.getAuthor());
+            if (user != null) {
+                user.decrementPostCount();
+            }
+
+            // 从列表中删除帖子
+            posts.remove(postToDelete);
+            savePosts();
+        }
     }
     /**
      * 获取所有帖子
