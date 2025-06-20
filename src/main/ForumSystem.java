@@ -11,14 +11,15 @@ import ui.*;
 public class ForumSystem extends JFrame {
     /** 数据管理器，负责用户、帖子、回帖等数据的持久化和操作 */
     private ForumDataManager dataManager;
-    /** 当前登录用户 */
+    /** 当前登录的用户currentUser */
     private User currentUser;
-    /** 卡片布局，用于主面板的多界面切换 */
+    /** 卡片布局CardLayout,用与主面板的界面切换 */
     private CardLayout cardLayout;
     /** 主面板，承载所有功能子面板 */
     private JPanel mainPanel;
 
     // 各功能面板
+
     /** 登录面板 */
     private LoginPanel loginPanel;
     /** 注册面板 */
@@ -58,6 +59,7 @@ public class ForumSystem extends JFrame {
         adminPanel = new AdminPanel(this, dataManager, forumPanel);
 
         // 将所有面板添加到主面板，并为每个面板分配唯一标识
+        // 切换显示不同面板时，就通过标识来找对应的面板
         mainPanel.add(loginPanel, "login");
         mainPanel.add(registerPanel, "register");
         mainPanel.add(forumPanel, "forum");
@@ -78,6 +80,27 @@ public class ForumSystem extends JFrame {
         cardLayout.show(mainPanel, "login");
     }
 
+    /** 设置当前登录用户 */
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
+    /** 刷新论坛主面板的帖子列表 */
+    public void refreshForumPanel() {
+        forumPanel.refreshPosts();
+    }
+
+    /** 获取当前登录用户 */
+    public User getCurrentUser() {
+        return this.currentUser;
+    }
+
+    /** 获取帖子查看面板 */
+    public ViewPostPanel getViewPostPanel() {
+        return this.viewPostPanel;
+    }
+
+    // ===================显示各个面板的方法=============
     /** 显示注册面板 */
     public void showRegisterPanel() {
         cardLayout.show(mainPanel, "register");
@@ -88,41 +111,9 @@ public class ForumSystem extends JFrame {
         cardLayout.show(mainPanel, "forum");
     }
 
-    /**
-     * 设置当前登录用户
-     * 
-     * @param user 当前登录的用户对象
-     */
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
-    }
-
-    /** 刷新论坛主面板的帖子列表 */
-    public void refreshForumPanel() {
-        forumPanel.refreshPosts();
-    }
-
     /** 显示登录面板 */
     public void showLoginPanel() {
         cardLayout.show(mainPanel, "login");
-    }
-
-    /**
-     * 获取当前登录用户
-     * 
-     * @return 当前用户对象
-     */
-    public User getCurrentUser() {
-        return this.currentUser;
-    }
-
-    /**
-     * 获取帖子查看面板
-     * 
-     * @return ViewPostPanel 实例
-     */
-    public ViewPostPanel getViewPostPanel() {
-        return this.viewPostPanel;
     }
 
     /** 显示帖子查看面板 */

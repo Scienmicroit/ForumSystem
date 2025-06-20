@@ -13,8 +13,11 @@ import data.Post;
 public class ForumPanel extends JPanel {
     private ForumSystem mainFrame;
     private ForumDataManager dataManager;
+    /** 帖子列表的数据模型 */
     private DefaultListModel<Post> listModel;
+    /** 帖子列表的组件 */
     private JList<Post> postList;
+    /** 顶部导航栏面板 */
     private JPanel navPanel;
 
     public ForumPanel(ForumSystem mainFrame, ForumDataManager dataManager) {
@@ -23,7 +26,7 @@ public class ForumPanel extends JPanel {
 
         setLayout(new BorderLayout());
 
-        // 帖子列表
+        /** 初始化帖子列表 */
         listModel = new DefaultListModel<>();
         postList = new JList<>(listModel);
         postList.setCellRenderer(new DefaultListCellRenderer() {
