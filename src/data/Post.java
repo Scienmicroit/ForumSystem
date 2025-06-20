@@ -36,7 +36,9 @@ public class Post implements Serializable {
         this.content = content;
         this.author = author;
         this.date = LocalDate.now();
+        //设置帖子的日期为当前日期
         this.replies = new ArrayList<>();
+        // 设置帖子默认不置顶
         this.isSticky = false;
         this.likes = 0;
     }
@@ -45,7 +47,11 @@ public class Post implements Serializable {
     public int getId() {
         return id;
     }
-
+    /**
+    * 获取帖子的标题
+    * 
+    * @return 帖子的标题
+    */
     public String getTitle() {
         return title;
     }
@@ -65,6 +71,11 @@ public class Post implements Serializable {
     public List<Reply> getReplies() {
         return replies;
     }
+    /**
+     * 设置帖子的置顶状态
+     * 
+    * @param sticky 帖子的新置顶状态
+    */
 
     public boolean isSticky() {
         return isSticky;
@@ -87,7 +98,7 @@ public class Post implements Serializable {
     /**
      * 修改帖子标题
      *
-     * @param newTitle 新标题
+     * 新标题
      */
     public void setTitle(String newTitle) {
         this.title = newTitle;
@@ -95,7 +106,7 @@ public class Post implements Serializable {
     /**
      * 修改帖子内容
      *
-     * @param newContent 新内容
+     * 新内容
      */
     public void setContent(String newContent) {
         this.content = newContent;
